@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3.2 | Notification Center</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- SweetAlert2 Theme Bootstrap 4 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+  <!-- Toastr CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+  <!-- AdminLTE Theme style -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <!-- Content Header -->
+    <div class="content-header">
+      <div class="container">
+        <div class="row mb-2 mt-4">
+          <div class="col-sm-12">
+            <h1 class="m-0">AdminLTE 3.2 Notification Showroom</h1>
+            <p class="text-muted">A unified single-page playground to test system alerts, toast styles, and modals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          
+          <!-- NATIVE WINDOWS SYSTEM NOTIFICATIONS -->
+          <div class="col-lg-4">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="card-title m-0"><i class="fas fa-desktop mr-2"></i>Native OS Notifications</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Pushes notifications straight to the <strong>Windows Action Center</strong> via the web browser API. Works even when minimized.</p>
+                <button type="button" class="btn btn-primary btn-block" onclick="triggerNativeNotification()">
+                  Launch Windows Toast
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TOASTR NOTIFICATIONS -->
+          <div class="col-lg-4">
+            <div class="card card-success card-outline">
+              <div class="card-header">
+                <h5 class="card-title m-0"><i class="fas fa-bread-slice mr-2"></i>Toastr Alerts</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">Non-blocking, auto-expiring slide-ins built inside the browser window. Perfect for fast app feedback.</p>
+                <div class="btn-group-vertical d-flex">
+                  <button type="button" class="btn btn-success mb-2" onclick="triggerToast('success')">Toast Success</button>
+                  <button type="button" class="btn btn-info mb-2" onclick="triggerToast('info')">Toast Info</button>
+                  <button type="button" class="btn btn-warning mb-2" onclick="triggerToast('warning')">Toast Warning</button>
+                  <button type="button" class="btn btn-danger" onclick="triggerToast('error')">Toast Error</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SWEETALERT2 MODALS -->
+          <div class="col-lg-4">
+            <div class="card card-warning card-outline">
+              <div class="card-header">
+                <h5 class="card-title m-0"><i class="fas fa-exclamation-triangle mr-2"></i>SweetAlert2 Dialogs</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">UI-blocking dialog boxes designed for critical assertions, confirmations, and server errors.</p>
+                <div class="btn-group-vertical d-flex">
+                  <button type="button" class="btn btn-outline-dark mb-2" onclick="triggerSwal('basic')">Standard Alert</button>
+                  <button type="button" class="btn btn-outline-danger" onclick="triggerSwal('confirm')">Destructive Action Dialog</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+<!-- Toastr -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<!-- AdminLTE App -->
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+<!-- NOTIFICATION SCRIPT ENGINE -->
+<script>
+  // 1. Native Web Notification Handler
+  function triggerNativeNotification() {
+    if (!("Notification" in window)) {
+      alert("This modern browser version does not support desktop notifications.");
+      return;
+    }
+
+    if (Notification.permission === "granted") {
+      executeNativeToast();
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          executeNativeToast();
+        }
+      });
+    } else {
+      alert("Notification permissions were previously denied. Please unlock them in your browser address bar.");
+    }
+  }
+
+  function executeNativeToast() {
+    new Notification("AdminLTE 3.2 System Alert", {
+      body: "This is a native OS layout notification routing through the Windows framework.",
+      icon: "https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png"
+    });
+  }
+
+  // 2. Toastr Engine Configurations
+  toastr.options = {
+    "closeButton": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "timeOut": "4000"
+  };
+
+  function triggerToast(type) {
+    switch(type) {
+      case 'success':
+        toastr.success('Database write completed successfully.', 'Success Event');
+        break;
+      case 'info':
+        toastr.info('A new application update has been queued.', 'System Status');
+        break;
+      case 'warning':
+        toastr.warning('API response threshold exceeds 400ms.', 'Telemetry Warning');
+        break;
+      case 'error':
+        toastr.error('Connection timeout: Target server unreachable.', 'Fatal Error');
+        break;
+    }
+  }
+
+  // 3. SweetAlert2 Dialogue Handlers
+  function triggerSwal(variant) {
+    if (variant === 'basic') {
+      Swal.fire({
+        icon: 'info',
+        title: 'System Information Update',
+        text: 'Nightly maintenance operations are scheduled to start at 02:00 UTC.',
+        confirmButtonColor: '#3085d6'
+      });
+    } else if (variant === 'confirm') {
+      Swal.fire({
+        title: 'Purge target database cluster?',
+        text: "This operation completely destroys live tables and cannot be undone.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, drop tables!',
+        cancelButtonText: 'Cancel execution'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: 'Purged!',
+            text: 'The structural nodes have been wiped clean.',
+            icon: 'success',
+            confirmButtonColor: '#28a745'
+          });
+        } else {
+          toastr.info('Database dropping aborted cleanly.', 'Operation Canceled');
+        }
+      });
+    }
+  }
+</script>
+</body>
+</html>
