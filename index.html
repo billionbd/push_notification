@@ -22,90 +22,87 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12 mb-3">
-<button class="btn btn-outline-primary" onclick="sendNotification1()"><i class="fas fa-bells mr-2"></i>Push Notification</button>
-<script>
-    function sendNotification1() {
-	if (!("Notification" in window)) {
-		// Check if the browser supports notifications
-		alert("This browser does not support desktop notification");
-	} else if (Notification.permission === "granted") {
-		// Check whether notification permissions have already been granted;
-		// if so, create a notification
-		const notification = new Notification("Hi there!");
-		// …
-	} else if (Notification.permission !== "denied") {
-		// We need to ask the user for permission
-		Notification.requestPermission().then((permission) => {
-		// If the user accepts, let's create a notification
-			if (permission === "granted") {
-				const notification = new Notification("Hi there!");
-				// …
-			}
-		});
-	}
-    }
-</script>
+							<button class="btn btn-outline-primary" onclick="sendNotification1()"><i class="fas fa-bell mr-2"></i>Push Notification</button>
+							<script>
+								function sendNotification1() {
+									if (!("Notification" in window)) {
+										// Check if the browser supports notifications
+										alert("This browser does not support desktop notification");
+									} else if (Notification.permission === "granted") {
+										// Check whether notification permissions have already been granted;
+										// if so, create a notification
+										const notification = new Notification("Hi there!");
+									} else if (Notification.permission !== "denied") {
+										// We need to ask the user for permission
+										Notification.requestPermission().then((permission) => {
+											// If the user accepts, let's create a notification
+											if (permission === "granted") {
+												const notification = new Notification("Hi there!");
+											}
+										});
+									}
+								}
+							</script>
 						</div>
 						<div class="col-lg-12 mb-3">
-<button class="btn btn-outline-primary" onclick="sendNotification2()"><i class="fas fa-bells mr-2"></i>Push Notification with pictures and logo</button>
-<script>
-    function sendNotification2() {
-        // 1. Check browser support
-        if (!("Notification" in window)) {
-            alert("This browser does not support desktop notifications.");
-            return;
-        }
+							<button class="btn btn-outline-primary" onclick="sendNotification2()"><i class="fas fa-bell mr-2"></i>Push Notification with pictures and logo</button>
+							<script>
+								function sendNotification2() {
+									// 1. Check browser support
+									if (!("Notification" in window)) {
+										alert("This browser does not support desktop notifications.");
+										return;
+									}
 
-        // 2. Handle permissions
-        if (Notification.permission === "granted") {
-            displayNotification();
-        } else if (Notification.permission !== "denied") {
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted") {
-                    displayNotification();
-                }
-            });
-        } else {
-            alert("Notifications are blocked. Please enable them in settings.");
-        }
-    }
+									// 2. Handle permissions
+									if (Notification.permission === "granted") {
+										displayNotification();
+									} else if (Notification.permission !== "denied") {
+										Notification.requestPermission().then(permission => {
+											if (permission === "granted") {
+												displayNotification();
+											}
+										});
+									} else {
+										alert("Notifications are blocked. Please enable them in settings.");
+									}
+								}
 
-    function displayNotification() {
-        const options = {
-            body: "Visit billionbd on YouTube for more content!",
-            icon: "https://cdn-icons-png.flaticon.com/512/14550/14550446.png",
-            badge: "https://cdn-icons-png.flaticon.com/512/9195/9195102.png",
-            // The banner image you provided
-            image: "https://cdn-share-sprites.flaticon.com/pack/4/4105/4105442-stay-at-home_3x2.jpg",
-            vibrate: [200, 100, 200],
-            requireInteraction: true 
-        };
+								function displayNotification() {
+									const options = {
+										body: "Visit billionbd on YouTube for more content!",
+										icon: "https://cdn-icons-png.flaticon.com/512/14550/14550446.png",
+										badge: "https://cdn-icons-png.flaticon.com/512/9195/9195102.png",
+										image: "https://cdn-share-sprites.flaticon.com/pack/4/4105/4105442-stay-at-home_3x2.jpg",
+										vibrate: [200, 100, 200],
+										requireInteraction: true 
+									};
 
-        const n = new Notification("New Update from BillionBD", options);
+									const n = new Notification("New Update from BillionBD", options);
 
-        // 3. Handle the click to YouTube
-        n.onclick = function(event) {
-            event.preventDefault(); 
-            window.open("https://www.youtube.com/@billionbd", "_blank");
-            n.close();
-        };
-    }
-</script>
+									// 3. Handle the click to YouTube
+									n.onclick = function(event) {
+										event.preventDefault(); 
+										window.open("https://www.youtube.com/@billionbd", "_blank");
+										n.close();
+									};
+								}
+							</script>
 						</div>
 					</div>
 				</div>
 			</section>
 		</div>
 	</div>
-		<footer class="main-footer d-md-none">
-			<ul class="nav nav-pills nav-fill">
-				<li class="nav-item mr-3" id="dashboard"><a class="nav-link" href="dashboard.php"><i class="fas fa-warehouse"></i></a></li>
-				<li class="nav-item mr-3" id="feed"><a class="nav-link" href="feed.php"><i class="fas fa-comment-dots"></i></a></li>
-				<li class="nav-item mr-3" id="faq"><a class="nav-link" href="faq.php"><i class="fas fa-question-circle"></i></a></li>
-				<li class="nav-item mr-3" id="notification"><a class="nav-link" href="notification.php"><i class="fas fa-bell"></i></a></li>
-				<li class="nav-item mr-3" id="profile"><a class="nav-link" href="profile.php"><i class="fas fa-address-card"></i></a></li>
-			</ul>
-		</footer>
+	<footer class="main-footer xd-md-none">
+		<ul class="nav nav-pills nav-fill">
+			<li class="nav-item mr-3" id="dashboard"><a class="nav-link" href="dashboard.php"><i class="fas fa-warehouse"></i></a></li>
+			<li class="nav-item mr-3" id="feed"><a class="nav-link" href="feed.php"><i class="fas fa-comment-dots"></i></a></li>
+			<li class="nav-item mr-3" id="faq"><a class="nav-link" href="faq.php"><i class="fas fa-question-circle"></i></a></li>
+			<li class="nav-item mr-3" id="notification"><a class="nav-link" href="notification.php"><i class="fas fa-bell"></i></a></li>
+			<li class="nav-item mr-3" id="profile"><a class="nav-link" href="profile.php"><i class="fas fa-address-card"></i></a></li>
+		</ul>
+	</footer>
 	<script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
 	<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
