@@ -22,9 +22,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12 mb-3">
-<button class="btn btn-outline-primary" onclick="sendNotification()"><i class="fas fa-bells mr-2"></i>Push Notification</button>
+<button class="btn btn-outline-primary" onclick="sendNotification1()"><i class="fas fa-bells mr-2"></i>Push Notification</button>
 <script>
-    function sendNotification() {
+    function sendNotification1() {
 	if (!("Notification" in window)) {
 		// Check if the browser supports notifications
 		alert("This browser does not support desktop notification");
@@ -47,9 +47,9 @@
 </script>
 						</div>
 						<div class="col-lg-12 mb-3">
-<button class="btn btn-outline-primary" onclick="sendNotification()"><i class="fas fa-bells mr-2"></i>Push Notification with pictures and logo</button>
+<button class="btn btn-outline-primary" onclick="sendNotification2()"><i class="fas fa-bells mr-2"></i>Push Notification with pictures and logo</button>
 <script>
-    function sendNotification1() {
+    function sendNotification2() {
         // 1. Check browser support
         if (!("Notification" in window)) {
             alert("This browser does not support desktop notifications.");
@@ -70,7 +70,7 @@
         }
     }
 
-    function displayNotification2() {
+    function displayNotification() {
         const options = {
             body: "Visit billionbd on YouTube for more content!",
             icon: "https://cdn-icons-png.flaticon.com/512/14550/14550446.png",
