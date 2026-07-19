@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mess Manager | * Page</title>
+	<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/5612/5612528.png">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css">
+	<link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
+	<link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+</head>
+<body class="text-sm layout-top-nav layout-footer-fixed">
+	<div class="wrapper">
+		<!--div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" src="https://cdn-icons-png.flaticon.com/512/5612/5612528.png" height="128">
+		</div-->
+		<div class="content-wrapper">
+			<section class="content-header"></section>
+			<section class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 mb-3">
+<button class="btn btn-outline-primary" onclick="sendNotification()"><i class="fas fa-bells mr-2"></i>Push Notification</button>
+<script>
+    function sendNotification() {
+	if (!("Notification" in window)) {
+		// Check if the browser supports notifications
+		alert("This browser does not support desktop notification");
+	} else if (Notification.permission === "granted") {
+		// Check whether notification permissions have already been granted;
+		// if so, create a notification
+		const notification = new Notification("Hi there!");
+		// …
+	} else if (Notification.permission !== "denied") {
+		// We need to ask the user for permission
+		Notification.requestPermission().then((permission) => {
+		// If the user accepts, let's create a notification
+			if (permission === "granted") {
+				const notification = new Notification("Hi there!");
+				// …
+			}
+		});
+	}
+    }
+</script>
+						</div>
+						<div class="col-lg-12 mb-3">
+<button class="btn btn-outline-primary" onclick="sendNotification()"><i class="fas fa-bells mr-2"></i>Push Notification with pictures and logo</button>
+<script>
+    function sendNotification() {
+        // 1. Check browser support
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notifications.");
+            return;
+        }
+
+        // 2. Handle permissions
+        if (Notification.permission === "granted") {
+            displayNotification();
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") {
+                    displayNotification();
+                }
+            });
+        } else {
+            alert("Notifications are blocked. Please enable them in settings.");
+        }
+    }
+
+    function displayNotification() {
+        const options = {
+            body: "Visit billionbd on YouTube for more content!",
+            icon: "https://cdn-icons-png.flaticon.com/512/14550/14550446.png",
+            badge: "https://cdn-icons-png.flaticon.com/512/9195/9195102.png",
+            // The banner image you provided
+            image: "https://cdn-share-sprites.flaticon.com/pack/4/4105/4105442-stay-at-home_3x2.jpg",
+            vibrate: [200, 100, 200],
+            requireInteraction: true 
+        };
+
+        const n = new Notification("New Update from BillionBD", options);
+
+        // 3. Handle the click to YouTube
+        n.onclick = function(event) {
+            event.preventDefault(); 
+            window.open("https://www.youtube.com/@billionbd", "_blank");
+            n.close();
+        };
+    }
+</script>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+		<footer class="main-footer d-md-none">
+			<ul class="nav nav-pills nav-fill">
+				<li class="nav-item mr-3" id="dashboard"><a class="nav-link" href="dashboard.php"><i class="fas fa-warehouse"></i></a></li>
+				<li class="nav-item mr-3" id="feed"><a class="nav-link" href="feed.php"><i class="fas fa-comment-dots"></i></a></li>
+				<li class="nav-item mr-3" id="faq"><a class="nav-link" href="faq.php"><i class="fas fa-question-circle"></i></a></li>
+				<li class="nav-item mr-3" id="notification"><a class="nav-link" href="notification.php"><i class="fas fa-bell"></i></a></li>
+				<li class="nav-item mr-3" id="profile"><a class="nav-link" href="profile.php"><i class="fas fa-address-card"></i></a></li>
+			</ul>
+		</footer>
+	<script src="https://adminlte.io/themes/v3/plugins/jquery/jquery.min.js"></script>
+	<script src="https://adminlte.io/themes/v3/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
+	<script src="https://adminlte.io/themes/v3/dist/js/adminlte.min.js?v=3.2.0"></script>
+</body>
+</html>
